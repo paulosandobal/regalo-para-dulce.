@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#160b2b">
+<title>El universo de Dulce 💜</title>
+<style>
+:root{--lav:#dfc6ff;--pink:#ffc4e9;--violet:#a875ff;--ink:#fff4ff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:Georgia,serif;background:radial-gradient(ellipse at 50% 0%,#59347f 0%,#281644 42%,#10091e 100%);min-height:100vh;overflow-x:hidden}
+#sky{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.starbg{position:absolute;background:#fff;border-radius:50%;box-shadow:0 0 8px #e5caff;animation:twinkle 2.6s infinite alternate}
+@keyframes twinkle{to{opacity:.12;transform:scale(.45)}}
+main{position:relative;z-index:1;width:min(100%,680px);margin:auto;padding:34px 15px 60px;text-align:center}
+.kicker{font:11px Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#d9bcff}
+h1{font-size:clamp(37px,9vw,60px);font-weight:normal;line-height:1.08;margin:13px 0;background:linear-gradient(90deg,#fff,#d8b5ff,#ffc5e8);background-clip:text;-webkit-background-clip:text;color:transparent}
+.subtitle{font-size:17px;line-height:1.65;color:#eadcff}
+.heart{font-size:72px;color:#ffe4fa;text-shadow:0 0 18px #f5baff,0 0 55px #a46bff;animation:pulse 2.5s infinite;margin:14px}
+@keyframes pulse{50%{transform:scale(1.12)}}
+.panel{margin:18px auto;padding:22px 18px;border:1px solid #d6b4ff66;border-radius:23px;background:linear-gradient(145deg,#ffffff18,#c99cff0c);backdrop-filter:blur(10px);box-shadow:0 14px 40px #08031355}
+button{border:1px solid #f2ddff99;border-radius:30px;padding:13px 18px;background:linear-gradient(100deg,#e4caff,#ffcbe9);color:#2b1741;font-weight:bold;font-size:14px;cursor:pointer;box-shadow:0 0 18px #b78aff44;transition:transform .18s}
+button:active{transform:scale(.96)}
+button:focus-visible{outline:3px solid white;outline-offset:4px}
+button:disabled{opacity:.6;cursor:default}
+.secondary{background:linear-gradient(100deg,#cbb4ff,#f0dcff);margin:4px}
+#entry{line-height:1.7;color:#f0e3ff}
+#content{display:none}
+#content.visible{display:block;animation:appear .8s ease both}
+@keyframes appear{from{opacity:0;transform:translateY(18px);filter:blur(4px)}to{opacity:1;transform:none;filter:blur(0)}}
+h2{font-size:27px;font-weight:normal;color:#f0d9ff;margin:3px 0 14px}
+.letter{text-align:left;font-size:17px;line-height:1.85;color:#fff2ff}
+.letter p{margin:0 0 13px}
+.signature{text-align:right;color:#f5c9eb;font-style:italic;font-size:20px;margin-top:18px}
+.rule{height:1px;background:linear-gradient(90deg,transparent,#d6b5ff,transparent);margin:18px 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.secret{min-height:112px;border:1px solid #d7b8ff55;border-radius:17px;background:#ffffff0d;color:#fff2ff;padding:12px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font-size:28px;box-shadow:inset 0 0 18px #c8a1ff0b}
+.secret span{font:12px Arial,sans-serif;color:#e1cff6}
+.secret.revealed{background:#b98aff27;border-color:#edceff;box-shadow:0 0 18px #b98aff35}
+.reveal{display:none;margin-top:12px;padding:15px;border-radius:16px;background:#a56be52b;border:1px solid #d6b6ff66;color:#fff1ff;line-height:1.7;text-align:center;animation:appear .5s ease both}
+.reveal.show{display:block}
+#progress{font:12px Arial,sans-serif;color:#d9c5f2;margin-top:13px}
+.gift{font-size:58px;cursor:pointer;display:inline-block;animation:bob 2.2s infinite}
+@keyframes bob{50%{transform:translateY(-8px) rotate(4deg)}}
+.choices{display:grid;gap:8px;margin-top:14px}
+.choices button{width:100%}
+#toast{position:fixed;z-index:10;bottom:18px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#f1ddff;color:#2b1741;padding:12px 17px;border-radius:24px;font:14px Arial,sans-serif;width:max-content;max-width:90%;text-align:center;transition:.3s}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+.particle{position:fixed;z-index:8;pointer-events:none;font-size:21px;text-shadow:0 0 12px #e9caff;animation:burst 2.5s ease-out forwards}
+@keyframes burst{0%{opacity:0;transform:translate(0,0) scale(.3)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.4) rotate(110deg)}}
+footer{font:12px Arial,sans-serif;color:#c7adde;margin-top:28px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div id="sky" aria-hidden="true"></div>
+<main>
+  <div class="kicker">Una aventura de pequeños secretos</div>
+  <h1>El universo de Dulce 💜</h1>
+  <p class="subtitle">Hay 10 sorpresas escondidas en este rincón del universo.<br>¿Podrás descubrirlas todas?</p>
+  <div class="heart">♡</div>
+  <section class="panel" id="entry">
+    <p>Este regalo tiene mensajes, juegos y detalles preparados especialmente para ti. Toca el botón para comenzar tu aventura.</p>
+    <button id="start">Comenzar la aventura ✨</button>
+  </section>
+  <div id="content">
+    <section class="panel">
+      <h2>¡Feliz primer mes de novios, mi Dulce! 💜</h2>
+      <div class="letter">
+        <p>Mi Dulce:</p>
+        <p>¡Feliz primer mes de novios, mi amor! Puede que sea solo el comienzo de nuestra historia, pero este primer mes ya ocupa un lugar muy especial en mi corazón.</p>
+        <p>Feliz primer mes de novios, mi amor. Preparé este pequeño universo para recordarte lo especial que eres para mí. Me hace muy feliz haberte encontrado y poder compartir contigo tantas conversaciones, risas y momentos bonitos.</p>
+        <p>Me encanta tu forma de ser, tu humor y esos detalles que te hacen única. Aunque hoy nos separen kilómetros, cada día agradezco que podamos estar presentes en la vida del otro.</p>
+        <p>Espero con ilusión el día en que podamos cambiar las llamadas por momentos juntos y ese abrazo que tanto esperamos. Mientras tanto, quiero que sigamos construyendo lo nuestro con paciencia, respeto, sinceridad y mucho cariño.</p>
+        <p>Si pudiera volver al principio, volvería a elegir el camino que me llevó hasta ti.</p>
+      </div>
+      <div class="signature">Con muchísimo cariño, para ti. ♡</div>
+    </section>
+
+    <section class="panel">
+      <h2>🌌 Las 10 sorpresas secretas</h2>
+      <p class="subtitle">Toca cada tarjeta. Algunas guardan palabras, otras esconden pequeñas actividades.</p>
+      <div class="grid" id="secrets">
+        <button class="secret" data-title="Un motivo para sonreír" data-message="Tu forma de ser tiene algo muy bonito: haces que hasta una conversación sencilla pueda convertirse en un recuerdo especial. 💜"><b>☄️</b><span>Sorpresa 1 · Un motivo</span></button>
+        <button class="secret" data-title="Un abrazo pendiente" data-message="Este cupón vale por un abrazo largo y tranquilo cuando por fin podamos vernos. No tiene fecha de vencimiento. 🤗"><b>🎟️</b><span>Sorpresa 2 · Un cupón</span></button>
+        <button class="secret" data-title="Nuestro deseo" data-message="Mi deseo es que sigamos encontrando motivos para reír, conversar y cuidarnos, incluso cuando el día sea complicado. 🌠"><b>🌠</b><span>Sorpresa 3 · Un deseo</span></button>
+        <button class="secret" data-title="Una canción imaginaria" data-message="Si nuestra historia tuviera una melodía, sería una que empieza suave, crece con cada recuerdo y siempre encuentra el camino de vuelta a casa. 🎶"><b>🎵</b><span>Sorpresa 4 · Melodía</span></button>
+        <button class="secret" data-title="Una pequeña promesa" data-message="Prometo intentar escucharte con atención, hablarte con sinceridad y cuidar lo bonito que estamos construyendo, día a día. 💌"><b>💌</b><span>Sorpresa 5 · Promesa</span></button>
+        <button class="secret" data-title="Un recuerdo por crear" data-message="Todavía nos esperan primeras veces: el primer saludo en persona, el primer paseo y ese primer abrazo que ya imaginamos tantas veces. ✨"><b>📸</b><span>Sorpresa 6 · Futuro recuerdo</span></button>
+        <button class="secret" data-title="Un deseo secreto" data-message="Ojalá nunca nos falten la paciencia para entendernos, la confianza para hablar y las ganas de celebrar las pequeñas cosas. 🦋"><b>🦋</b><span>Sorpresa 7 · Deseo secreto</span></button>
+        <button class="secret" data-title="Una palabra especial" data-message="Gracias. Por llegar, por compartir, por escuchar y por ser parte de mis días. A veces una palabra sencilla guarda muchísimo cariño. 🌷"><b>🌷</b><span>Sorpresa 8 · Una palabra</span></button>
+        <button class="secret" data-title="El mapa de dos corazones" data-message="Aunque vivamos lejos, podemos seguir acercándonos con cada charla, cada gesto amable y cada plan que soñemos juntos. 🗺️"><b>🗺️</b><span>Sorpresa 9 · Nuestro mapa</span></button>
+        <button class="secret" data-title="La sorpresa final" data-message="De todas las cosas bonitas de este regalo, mi favorita es poder dedicártelo. Feliz primer mes de novios, Dulce. Me alegra muchísimo que estés en mi vida. 💜"><b>👑</b><span>Sorpresa 10 · Final</span></button>
+      </div>
+      <div id="progress">Sorpresas descubiertas: 0 de 10</div>
+      <div id="reveal" class="reveal" aria-live="polite"></div>
+    </section>
+
+    <section class="panel">
+      <h2>🎁 Una caja misteriosa</h2>
+      <p class="subtitle">¿Qué habrá dentro? Tócala para averiguarlo.</p>
+      <div class="gift" id="gift" role="button" tabindex="0" aria-label="Abrir la caja de regalo">🎁</div>
+      <div id="giftReveal" class="reveal">¡Sorpresa! Este regalo incluye un plan pendiente: una cita a distancia para ver una película, elegir algo rico y compartir un ratito juntos. 🍿💜</div>
+    </section>
+
+    <section class="panel">
+      <h2>🌙 Elige una estrella</h2>
+      <p class="subtitle">Cada estrella tiene una frase diferente para ti.</p>
+      <div class="choices">
+        <button class="secondary" data-star="Eres una parte muy bonita de mis días. ✨">⭐ Estrella brillante</button>
+        <button class="secondary" data-star="Me gusta conocer cada día un poquito más de ti. 💜">🌟 Estrella violeta</button>
+        <button class="secondary" data-star="La distancia no borra los momentos que compartimos. 🌙">🌙 Estrella de la noche</button>
+      </div>
+      <div id="starReveal" class="reveal"></div>
+    </section>
+
+    <section class="panel">
+      <h2>💫 Un pequeño juego</h2>
+      <p class="subtitle">¿Qué es lo que más espero poder darte cuando nos encontremos?</p>
+      <div class="choices">
+        <button class="secondary" data-answer="no">Un mapa del universo 🪐</button>
+        <button class="secondary" data-answer="yes">Un abrazo enorme 🤗</button>
+        <button class="secondary" data-answer="no">Una caja de estrellas 🌟</button>
+      </div>
+      <div id="quizReveal" class="reveal"></div>
+    </section>
+
+    <section class="panel">
+      <h2>🔐 Un mensaje bajo llave</h2>
+      <p class="subtitle">Toca el candadito para abrir el último mensajito escondido.</p>
+      <button id="lock" class="secondary" style="font-size:28px;padding:12px 25px">🔒</button>
+      <div id="lockReveal" class="reveal">No importa cuántos kilómetros haya entre nosotros: quiero que siempre podamos hablar con confianza, respetarnos y recordar por qué elegimos compartir este camino. 💜</div>
+    </section>
+
+    <section class="panel">
+      <h2>🎆 ¡Un cielo para ti!</h2>
+      <p class="subtitle">Pulsa el botón y llena la pantalla de destellos morados.</p>
+      <button id="fireworks">Hacer brillar el cielo ✨</button>
+      <div id="endMessage" class="reveal">Dulce, gracias por ser parte de esta historia. ¡Feliz primer mes de novios! 💜</div>
+    </section>
+  </div>
+  <footer>Hecho especialmente para Dulce · Un universo de cariño ♡</footer>
+</main>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+const sky=document.getElementById('sky');
+for(let i=0;i<120;i++){const s=document.createElement('i');s.className='starbg';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*3+'s';s.style.opacity=.2+Math.random()*.75;const z=1+Math.random()*2;s.style.width=z+'px';s.style.height=z+'px';sky.appendChild(s)}
+function burst(n=35){const symbols=['✦','♡','✧','✨','💜','🌟'];for(let i=0;i<n;i++)setTimeout(()=>{const p=document.createElement('span');p.className='particle';p.textContent=symbols[Math.floor(Math.random()*symbols.length)];p.style.left=(4+Math.random()*92)+'vw';p.style.top=(42+Math.random()*48)+'vh';p.style.setProperty('--dx',(Math.random()*280-140)+'px');p.style.setProperty('--dy',(-100-Math.random()*260)+'px');document.body.appendChild(p);setTimeout(()=>p.remove(),2600)},i*18)}
+let timer;function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>t.classList.remove('show'),2700)}
+function toggleReveal(id,html){const el=document.getElementById(id);el.innerHTML=html;el.classList.add('show')}
+document.getElementById('start').addEventListener('click',()=>{document.getElementById('entry').style.display='none';document.getElementById('content').classList.add('visible');burst(55);setTimeout(()=>document.getElementById('content').scrollIntoView({behavior:'smooth'}),100)});
+let count=0;const reveal=document.getElementById('reveal');
+document.querySelectorAll('.secret').forEach(btn=>btn.addEventListener('click',()=>{if(btn.classList.contains('revealed'))return;btn.classList.add('revealed');btn.innerHTML='💜<span>Descubierta</span>';count++;document.getElementById('progress').textContent='Sorpresas descubiertas: '+count+' de 10';toggleReveal('reveal','<strong>'+btn.dataset.title+'</strong><br>'+btn.dataset.message);burst(12);if(count===10)toast('¡Descubriste las 10 sorpresas! 💜')}));
+const gift=document.getElementById('gift');function openGift(){const r=document.getElementById('giftReveal');r.classList.toggle('show');gift.textContent=r.classList.contains('show')?'🎀':'🎁';if(r.classList.contains('show'))burst(24)}
+gift.addEventListener('click',openGift);gift.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openGift()}});
+document.querySelectorAll('[data-star]').forEach(b=>b.addEventListener('click',()=>{toggleReveal('starReveal',b.dataset.star);burst(14)}));
+document.querySelectorAll('[data-answer]').forEach(b=>b.addEventListener('click',()=>{toggleReveal('quizReveal',b.dataset.answer==='yes'?'¡Exactamente! Un abrazo enorme que compense un poquito todo este tiempo a distancia. 🤗💜':'¡Casi! La respuesta está llena de cariño: un abrazo enorme para cuando nos encontremos. 💜');burst(14)}));
+document.getElementById('lock').addEventListener('click',()=>{const r=document.getElementById('lockReveal');r.classList.toggle('show');document.getElementById('lock').textContent=r.classList.contains('show')?'🔓':'🔒';burst(18)});
+document.getElementById('fireworks').addEventListener('click',()=>{burst(95);document.getElementById('endMessage').classList.add('show')});
+</script>
+</body>
+</html>
